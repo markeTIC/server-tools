@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2013 Daniel Reis (https://launchpad.com/~dreis-pt)
+#    This module copyright (C) 2014 Therp BV (<http://therp.nl>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,22 +18,16 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from openerp import fields
 
-{
-    'name': "LDAP mapping for user name and e-mail",
-    'version': "1.0",
-    'depends': ["auth_ldap"],
-    'author': "Daniel Reis (https://launchpad.com/~dreis-pt)",
-    'description': """\
-Allows to define the LDAP attributes to use to retrieve user name and e-mail address.
 
-The default attribute used for the name is "cn".
-For Active Directory, you might prefer to use "displayName" instead.
-AD also supports the "mail" attribute, so it can be mapped into OpenERP.
-""",
-    'category': "Tools",
-    'data': [
-        'users_ldap_view.xml',
-    ],
-    'installable': True,
-}
+class Serialized(fields.Field):
+    type = 'serialized'
+
+    def convert_to_cache(self, value, env, validate=True):
+        if value:
+            return value
+        else:
+            return {}
+
+fields.Serialized = Serialized
