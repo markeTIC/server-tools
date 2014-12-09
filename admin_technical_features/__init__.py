@@ -1,8 +1,9 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    This module copyright (C) 2012 Therp BV (<http://therp.nl>).
+#    This module copyright (C) 2014 Savoir-faire Linux
+#    (<http://www.savoirfairelinux.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,25 +19,3 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-from openerp.osv import orm, fields
-
-
-class CompanyLDAPPopulateWizard(orm.TransientModel):
-    _name = 'res.company.ldap.populate_wizard'
-    _description = 'Populate users from LDAP'
-    _columns = {
-        'name': fields.char('Name', size=16),
-        'ldap_id': fields.many2one(
-            'res.company.ldap', 'LDAP Configuration'),
-        'users_created': fields.integer(
-            'Number of users created', readonly=True),
-    }
-
-    def create(self, cr, uid, vals, context=None):
-        ldap_pool = self.pool.get('res.company.ldap')
-        if 'ldap_id' in vals:
-            vals['users_created'] = ldap_pool.action_populate(
-                cr, uid, vals['ldap_id'], context=context)
-        return super(CompanyLDAPPopulateWizard, self).create(
-            cr, uid, vals, context=None)
