@@ -2,8 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    This module copyright (C) 2013 Therp BV (<http://therp.nl>)
-#    Code snippets from openobject-server copyright (C) 2004-2013 OpenERP S.A.
+#    This module copyright (C) 2014 Therp BV (<http://therp.nl>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,17 +20,18 @@
 ##############################################################################
 
 {
-    'name': 'Call cron jobs from their form view',
+    'name': 'Database cleanup',
     'version': '0.1',
-    'author': ["Therp BV", "OpenERP S.A."],
+    'author': 'Therp BV',
+    'depends': ['base'],
     'license': 'AGPL-3',
     'category': 'Tools',
-    'description': """
-This module adds a button to the cron scheduled task form in OpenERP
-that allows the administrator to run the job immediately, independently
-of the scheduler.
-""",
-    'depends': ['base'],
-    'data': ['view/ir_cron.xml'],
-    'installable': False,
-    }
+    'data': [
+        'view/purge_modules.xml',
+        'view/purge_models.xml',
+        'view/purge_columns.xml',
+        'view/purge_tables.xml',
+        'view/purge_data.xml',
+        'view/menu.xml',
+        ],
+}
