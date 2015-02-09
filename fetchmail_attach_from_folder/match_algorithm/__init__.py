@@ -1,8 +1,9 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    This module copyright (C) 2013 Therp BV (<http://therp.nl>).
+#    This module copyright (C) 2013 Therp BV (<http://therp.nl>)
+#    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,36 +19,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{
-    "name": "dbfilter_from_header",
-    "version": "1.0",
-    "author": "Therp BV",
-    "license": "AGPL-3",
-    "complexity": "normal",
-    "description": """
-    This addon lets you pass a dbfilter as a HTTP header.
 
-    This is interesting for setups where database names can't be mapped to
-    proxied host names.
-
-    In nginx, use
-    proxy_set_header X-OpenERP-dbfilter [your filter];
-
-    The addon has to be loaded as server-wide module.
-    """,
-    "category": "Tools",
-    "depends": [
-        'web',
-    ],
-    "data": [
-    ],
-    "js": [
-    ],
-    "css": [
-    ],
-    "auto_install": False,
-    "installable": True,
-    "external_dependencies": {
-        'python': [],
-    },
-}
+from . import base
+from . import email_exact
+from . import email_domain
+from . import openerp_standard
