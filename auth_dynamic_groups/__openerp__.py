@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    This module copyright (C) 2014 Therp BV (<http://therp.nl>).
+#    This module copyright (C) 2013-2015 Therp BV (<http://therp.nl>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,36 +19,17 @@
 #
 ##############################################################################
 {
-    "name": "Authenticate via HTTP basic authentication (logout helper)",
+    "name": "Dynamic groups",
     "version": "1.0",
-    "author": "Therp BV,Odoo Community Association (OCA)",
-    "license": "AGPL-3",
-    "complexity": "expert",
-    "description": """
-With auth_from_http_basic, the logout procedure has to be bent a bit to provide
-a good user experience. As the former has to be a server wide module, this is
-the clientside complement which provides the javascript part.
-
-The addon has to be installed in the database in use.
-
-
-Funders:
-
-Open2bizz software & consultancy
-    """,
-    "category": "",
+    "author": "Therp BV",
+    "complexity": "normal",
+    'summary': 'Have membership conditions for certain groups',
+    "category": "Tools",
     "depends": [
-        'web',
-        'auth_from_http_basic',
+        'base',
     ],
     "data": [
-    ],
-    "js": [
-        'static/src/js/auth_from_http_basic_logout.js',
-    ],
-    "css": [
-    ],
-    "qweb": [
+        'view/res_groups.xml',
     ],
     "auto_install": False,
     "installable": True,
